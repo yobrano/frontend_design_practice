@@ -1,0 +1,80 @@
+@font-face {
+    font-family: Poppins;
+    src: url("assets/fonts//Poppins/Poppins-Regular.ttf");
+}
+
+body{
+    font-family: Poppins !important;
+}
+
+.nav-center{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.active{
+    color: #d9b557 !important;
+}
+
+.brand-text{
+    color:#d9b557 !important;
+    font-weight: bold;
+}
+.text-justify{
+    text-align: justify;
+}
+.nav-end{
+    margin-left: auto;
+}
+
+.btn{
+    border: none !important;
+    border-radius: 0px !important;
+}
+.btn-primary{
+    background-color: #d9b557 !important;
+    border: 2px solid #d9b557 !important;
+
+}
+.btn-primary:hover{
+    background-color: #c09833 !important;
+    border: 2px solid #c09833 !important;
+
+}
+
+.btn-secondary{
+    background-color: #fff !important;
+    color: rgb(44, 44, 44) !important ;
+    border: 2px solid #d9b557 !important;
+}
+
+.btn-secondary:hover{
+    background-color: #ededed !important;
+    color: rgb(44, 44, 44) !important ;
+    border: 2px solid #c09833 !important;
+}
+
+.mdi-large{
+    font-size: 1.6rem;
+}
+
+.mdi-card-img{
+    font-size: 6rem;
+    color:#d9b557 !important;
+}
+
+.aside-img{
+    height:auto;
+    width: 37rem;
+    padding: 0px;
+}
+.footer-item a{
+    text-decoration: none;
+}
+.footer-item:nth-child(even) a {
+    color:#c09833 !important;
+}
+
+.footer-item:nth-child(odd) a {
+    color:black !important;
+}
