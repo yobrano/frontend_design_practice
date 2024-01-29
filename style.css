@@ -5,6 +5,8 @@
 
 body{
     font-family: Poppins !important;
+    overflow-x: hidden;
+    padding: 0px;
 }
 
 .nav-center{
@@ -65,7 +67,7 @@ body{
 
 .aside-img{
     height:auto;
-    width: 37rem;
+    max-width: 37rem;
     padding: 0px;
 }
 .footer-item a{
@@ -76,5 +78,31 @@ body{
 }
 
 .footer-item:nth-child(odd) a {
-    color:black !important;
+    color:white !important;
+}
+
+footer{
+    background-color: #1c1c1c;
+    color: white;
+}
+
+.footer-input{
+    background-color: #1c1c1c;
+    color: white;
+    border: 1px #d9b557 solid ;
+    border-radius: 5px;
+    padding:0.4rem;
+}
+
+.footer-input::placeholder{
+    color: #d9b557;
+}
+
+.icon-button{
+    color: white;
+    font-size: 2rem;
+}
+
+.icon-button:hover{
+    color: #d9b557;
 }
