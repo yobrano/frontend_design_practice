@@ -133,3 +133,14 @@ header{
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
+
+@media screen and (max-width:768px) {
+    .w-sm-100{
+        width: 100%;
+    }
+
+    .mx-sm-auto{
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
