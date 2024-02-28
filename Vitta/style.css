@@ -1,0 +1,146 @@
+@font-face {
+    font-family: Poppins;
+    src: url(assets/fonts/Poppins/Poppins-Regular.ttf);
+}
+
+body {
+    font-family: Poppins;
+    padding: 0px;
+    margin: 0px;
+    overflow-x: hidden;
+}
+
+nav {
+    border-radius: 10px 10px 0px 0px;
+}
+
+.nav-logo {
+    height: 50px;
+    width: 50px;
+}
+
+.nav-link {
+    color: #95b828;
+}
+
+.nav-active {
+    background-color: #95b828;
+    color: white !important;
+}
+
+.nav-link {
+    padding: 1.5rem;
+}
+
+.pill-input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+.pill-btn:focus {
+    outline: none;
+    border: none;
+}
+
+.mdi-large {
+    font-size: 4rem;
+    color: #a3c554;
+}
+
+.mdi-large-container {
+    width: 7rem;
+    height: 7rem;
+    background-color: #244d85;
+    border-radius: 50%
+}
+
+
+.mdi-medium{
+    font-size: 3rem;
+}
+
+.text-success{
+    color: #95b828 !important;
+}
+.text-primary{
+    color: #000058 !important;
+}
+.text-justify{
+    text-align: justify !important;
+}
+
+header{
+    padding-top: 1em;
+    min-height: 90vh;
+    background-image: url("assets/images/sewage-water-plant.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#hero{
+    padding-top: 20%;
+}
+
+.btn-primary{
+    color: #000058 !important;
+    background-color: white !important;
+    border: 2px  white solid;
+}
+
+.btn-primary:hover{
+    color: white !important;
+    background-color: #a3c554 !important;
+    border: 2px  #a3c554 solid;
+}
+
+
+.btn-outline-primary{
+    color: white !important;
+    background-color: transparent !important;
+    border: 2px #72a821 solid;
+}
+
+.btn-outline-primary:hover{
+    color: white !important;
+    background-color: #a3c554 !important;
+    border: 2px  #a3c554 solid;
+}
+
+
+.btn-secondary{
+    background-color: #a3c554 !important;
+    color: #000058;
+    border: 2px #a3c554 solid;
+}
+
+.bg-success{
+    background-color: #a3c554 !important;
+}
+
+.bg-primary{
+    background-color: #000058 !important;
+}
+
+.partner-logo{
+    width: 20%;
+    height: 20%;
+}
+
+.footer-container{
+    border-radius: 0px 0px 100% 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+@media screen and (max-width:768px) {
+    .w-sm-100{
+        width: 100%;
+    }
+
+    .mx-sm-auto{
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
