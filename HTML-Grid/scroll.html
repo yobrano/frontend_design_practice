@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            /* Hide vertical scrollbar */
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100vw;
+            /* Full viewport width */
+        }
+
+        .grid-item {
+            width: 25%;
+            /* Each item takes 25% of the viewport width */
+            height: 100px;
+            /* Set your desired item height */
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="grid">
+        <!-- Generate grid items dynamically using JavaScript -->
+        <div id="anchor-grid">Trigger Anchor</div>
+    </div>
+
+
+    <script>
+        var frameID;
+        var autoGridGenCounter = 100;
+        const grid = document.querySelector('.grid');
+        let trigger = document.getElementById("anchor-grid");
+        // Create a large number of grid items (for demonstration)
+        for (let i = 0; i < 100; i++) {
+            const gridItem = document.createElement('div');
+            gridItem.className = 'grid-item';
+            gridItem.textContent = i + 1; // Display item number
+            grid.insertBefore(gridItem, trigger);
+        }
+
+        // Infinite scrolling effect
+        function scrollGrid() {
+            autoGridGenCounter=autoGridGenCounter+1;
+            const gridItem = document.createElement('div');
+            gridItem.classList.add('grid-item');
+            gridItem.textContent = autoGridGenCounter+1; // Display item number
+            grid.insertBefore(gridItem, trigger);
+
+            frameID = requestAnimationFrame(scrollGrid);
+
+            setTimeout(() => {
+                cancelAnimationFrame(frameID);
+                console.log("Grid Generation stopped after 1 second.");
+            }, 1000);
+
+        }
+
+        // Start the infinite scrolling animation
+        // scrollGrid();
+        const onStart = () => {
+            frameID = requestAnimationFrame(scrollGrid);
+        };
+
+        const onStop = () => {
+            cancelAnimationFrame(frameID);
+        };
+
+
+
+        window.onscroll = function () {
+            console.log("Y-pos = " + window.scrollY + " innerHeight = " + window.innerHeight + " <> " + document.body.scrollHeight);
+            if ((2 * window.innerHeight) + window.scrollY >= document.body.scrollHeight) {
+                // You're at the bottom of the page
+                console.log("Bottom of page reached!");
+                // You can trigger your custom function here
+                onStart()
+            } else {
+                onStop()
+            }
+        };
+
+
+
+    </script>
+</body>
+
+</html>

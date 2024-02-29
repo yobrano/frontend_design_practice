@@ -18,6 +18,7 @@
     <section id="week" >
         <form action="" class="rounded border" id="task-form">
             <h3><center> Create Task</center></h3>
+            <input type="hidden" name="task_id">
             <input type="hidden" name="task_hour">
             <input type="hidden" name="task_day">
 
@@ -47,7 +48,9 @@
 
             <textarea name="task_description" id="task-description" cols="30" rows="10" class="d-block p-1" placeholder="Details" ></textarea>
             <br>
+
             <button type="submit">Create Task</button>
+            <button id="delete">delete</button>
         </form>
     </section>
 
@@ -82,13 +85,7 @@
         </div>
         <div id="Time" class="col">
             <div  class="row index"> Monday </div>
-            <div id="Hour"  data-day="Monday" data-hour="12:00AM" class="row">
-                <div class="task" draggable="true" id="task1" >
-                    Task Title
-
-                </div>
-
-            </div>
+            <div id="Hour"  data-day="Monday" data-hour="12:00AM" class="row"></div>
             <div id="Hour"  data-day="Monday" data-hour="1:00AM" class="row"> </div>
             <div id="Hour"  data-day="Monday" data-hour="2:00AM" class="row"> </div>
             <div id="Hour"  data-day="Monday" data-hour="3:00AM" class="row"> </div>
@@ -112,6 +109,34 @@
             <div id="Hour"  data-day="Monday" data-hour="9:00PM" class="row"> </div>
             <div id="Hour"  data-day="Monday" data-hour="10:00PM" class="row"> </div>
             <div id="Hour"  data-day="Monday" data-hour="11:00PM" class="row"> .</div>
+        </div>    
+        
+        <div id="Time" class="col">
+            <div  class="row index"> Tuesday </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="12:00AM" class="row"></div>
+            <div id="Hour"  data-day="Tuesday" data-hour="1:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="2:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="3:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="4:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="5:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="6:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="7:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="8:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="9:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="10:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="11:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="12:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="1:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="2:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="3:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="4:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="5:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="6:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="7:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="8:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="9:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="10:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="11:00PM" class="row"> .</div>
         </div>
     </div>
     
@@ -119,8 +144,8 @@
     </section>
 
 
-    <div >
-
+    <div class="task" draggable="true" id="task-template">
+        <!-- Task Template -->
     </div>
     <script src="index.js"></script>
 

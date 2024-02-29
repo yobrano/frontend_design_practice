@@ -1,8 +1,10 @@
 :root{
     --primary: #008484;
     --secondary: silver;
-    --white: #f1f1f1;;
-    --dark: #484848;;
+    --white: #f1f1f1;
+    --dark: #484848;
+    --selected: #53b0e6f6;
+    --selected-outline: #1d84bf;
 }
 
 body{
@@ -14,6 +16,7 @@ section{
     display: flex;
     justify-content: center;
 }
+
 .col{
     display: block;
  }
@@ -71,7 +74,6 @@ section{
 }
 
 .task{
-    z-index: 1;
     width: 5rem;
     background: var(--secondary);
     position: relative;
@@ -80,5 +82,17 @@ section{
 
     font-weight: bold;
     color: var(--dark);
-    
+}
+
+
+.task:hover{
+    background-color: var(--selected);
+    border: 2px solid var(--selected-outline);
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--white);
+}
+
+#task-template{
+    display: none;
 }
