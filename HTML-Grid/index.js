@@ -262,7 +262,6 @@ function handleTaskSubmit(event){
 
     event.preventDefault()
     const id = taskForm.querySelector("input[name=task_id]").value
-    console.log(id)
     const task = getTaskByID(id)
     //create if task is empty 
     task? updateOrCreateTask(task.id):updateOrCreateTask()
@@ -270,6 +269,19 @@ function handleTaskSubmit(event){
     hideTaskForm()
     document.querySelector(".selected-hour")?.classList.remove("selected-hour");
 }
+
+
+
+function handleDeleteTask(event){
+    event.preventDefault()
+    const id = taskForm.querySelector("input[name=task_id]").value
+    hideTaskForm()
+    const taskElement = document.getElementById(id)
+    taskElement.remove()
+    deleteTask(id)
+    
+}
+
 
 function handleHourLeftClick(event) {
     hideTaskForm()
@@ -308,7 +320,8 @@ function handleHourDrop(event) {
 
     task["day"] = dropzone.dataset["day"] 
     task["hour"] = dropzone.dataset["hour"]
-    
+    task["date"]= dropzone.dataset["date"]
+
     task["startTime"] = to24Hrs(dropzone.dataset["hour"])
 
     task[taskIndex] = task
@@ -355,6 +368,7 @@ function renderTasks(taskID){
 
 // ------------ Event Binders ------------
 taskForm.addEventListener("submit", handleTaskSubmit);
+deleteBtn.addEventListener("click", handleDeleteTask)
 document.addEventListener("keydown", handleTaskFormClose)
 taskElements.forEach((task) => {
     task.addEventListener("dragstart", handleTaskDragStart);
