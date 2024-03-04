@@ -29,59 +29,15 @@ function formatDate(date){
 
 
 function offsetDate(date, offset){
-    // hours = offset * 24 
-    // minutes = hours * 60
-    // seconds = minutes * 60 
-    // milliSeconds = seconds  * 1000
+    let hours = offset * 24 
+    let minutes = hours * 60
+    let seconds = minutes * 60 
+    let milliSeconds = seconds  * 1000
+
+    console.log(date.valueOf() + milliSeconds)
     
-    // date = new Date(date.valueOf + milliSeconds )
+    date = new Date(date.valueOf() + milliSeconds )
     
-    return date
-
-    let newDate = date.getDate() + offset
-    let maxDate = monthDays[date.getMonth()]
-
-    let validate = true
-    // Extreem conditions (transition when date exeeds limit or falls below 1 )
-    while(validate){
-        // Check if you need to go back to last month
-        if(newDate <= 0){
-            let prevMaxDate = monthDays[date.getMonth() - 1]
-
-            let prevMonth = date.getMonth() - 1 // 0 index based
-            
-            // Check for january -> go to prev year.
-            if(prevMonth <= -1){
-                prevMonth =  12 + prevMonth
-                let prevYear = ((date.getYear() - 100) - 1) + 2000
-                date.setYear(prevYear)
-            }
-
-            date.setMonth(prevMonth)
-            newDate = prevMaxDate - newDate
-            
-        }
-        // Check if you need to go to next month
-        else if(newDate > maxDate) {
-            let nextMonth = date.getMonth() + 1 // 0 index based
-            
-            // check for december -> go to next year.
-            if(nextMonth >= 12){
-                nextMonth =  nextMonth - 12 
-                let nextYear = ((date.getYear() - 100) + 1) + 2000
-                date.setYear(nextYear)
-            }     
-
-            date.setMonth(nextMonth)
-            newDate = maxDate - newDate
-        }else{
-            validate = false
-        }
-
-        console.log("---> ", newDate,date.getMonth() + 1, )
-    }
-    date.setDate(newDate)
-
     return date
 }
 
