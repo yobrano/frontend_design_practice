@@ -1,11 +1,11 @@
 const weekDays = [
+    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday",
 ];
 const monthDays = [
     31, 28, 31, 30,
@@ -23,25 +23,51 @@ if(isLeap){
 }
 
 // ------------ Helper Functions ------------
+
 function formatDate(date){
-    return Intl.DateTimeFormat("en-GB").format(date)
+
+    date = new Date(date)
+    // return Intl.DateTimeFormat("en-GB").format(date)
+    let monthDay = String(date.getDate())
+    let month = String(date.getMonth() + 1)
+    let year = String((date.getYear() - 100) + 2000)
+
+    monthDay = monthDay.length === 1? `0${monthDay}`: monthDay
+    month = month.length === 1? `0${month}`: month
+    return `${year}-${month}-${monthDay}`
+
+
+
 }
 
-
 function offsetDate(date, offset){
+    // Convert to unix time (no. of milliseconds since 01/01/1970)
+    const unixDate = date.valueOf() 
     let hours = offset * 24 
     let minutes = hours * 60
     let seconds = minutes * 60 
     let milliSeconds = seconds  * 1000
 
-    console.log(date.valueOf() + milliSeconds)
+    // offset the current date using the milliseconds then generate a new date. 
+    const newUnixDate = unixDate + milliSeconds
     
-    date = new Date(date.valueOf() + milliSeconds )
-    
-    return date
+    return new Date(newUnixDate)
 }
 
-// console.log(offsetDate(selectedDate, -30))
+function getWeekRange(startDate){
+    let date = new Date(startDate)
+    let day = date.getDay()
+    let offsets = {}
+    for(let dayOffset=0; dayOffset<=6; dayOffset++){
+        let wkDay = offsetDate(date, dayOffset - day)
+        let index = weekDays[wkDay.getDay()]
+        offsets[index] = wkDay
+    }
+
+    return offsets
+}
+
+
 function timeDiff(t2, t1) {
     // t2 --> end time (24 hr format),  
     // t1 --> Start time (24 hr format),  
@@ -72,6 +98,13 @@ function to24Hrs(time){
     }else if(hours === "12" && AM_PM === "AM"){
         hours = "00"
     }
+
+    hours = String(hours)
+    minutes = String(minutes)
+
+    hours = hours.length === 1? `0${hours}`: hours
+    minutes = minutes.length === 1? `0${minutes}`: minutes
+
     return `${hours}:${minutes}`
 }
 
@@ -156,6 +189,7 @@ const taskForm = document.querySelector("#task-form");
 const hours = document.querySelectorAll("#Hour");
 const taskElements = document.querySelectorAll(".task");
 const deleteBtn = document.querySelector("#delete")
+const weekRange = getWeekRange(selectedDate)
 
 // ------------ Form Control Methods ------------
 function hideTaskForm() {
@@ -181,6 +215,8 @@ function showTaskForm(clickedTask, pos) {
     if(!task){
         taskForm.querySelector("input[name=task_day]").value = clickedTask["day"] ;
         taskForm.querySelector("input[name=task_hour]").value = clickedTask["hour"] ;
+        taskForm.querySelector("input[name=task_start_time]").value = to24Hrs(clickedTask["hour"]);
+        taskForm.querySelector("input[name=task_date]").value = formatDate(clickedTask["date"]);
     }else{
         taskForm.querySelector("input[name=task_id]").value = task["id"] ;
         taskForm.querySelector("input[name=task_date]").value = task["date"] ;
@@ -326,6 +362,8 @@ taskElements.forEach((task) => {
 });
 
 hours.forEach((hour) => {
+    const date = weekRange[hour.dataset.day]
+    hour.dataset["date"] = formatDate(date)
     hour.addEventListener("click", handleHourLeftClick);
     hour.addEventListener("dragover", handleHourDragOver);
     hour.addEventListener("drop", handleHourDrop);
