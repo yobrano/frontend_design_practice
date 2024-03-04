@@ -1,11 +1,94 @@
+const weekDays = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+];
+const monthDays = [
+    31, 28, 31, 30,
+    31, 30, 31, 31,
+    30, 31, 30, 31
+]
+
+
 const tasks = []
 let taskFormIsOpen = false;
-
+let selectedDate = new Date()
+let isLeap = (offsetDate(selectedDate, -5).getYear() - 100 )% 4 === 0
+if(isLeap){
+    monthDays[1] = 29
+}
 
 // ------------ Helper Functions ------------
+function formatDate(date){
+    return Intl.DateTimeFormat("en-GB").format(date)
+}
+
+
+function offsetDate(date, offset){
+    // hours = offset * 24 
+    // minutes = hours * 60
+    // seconds = minutes * 60 
+    // milliSeconds = seconds  * 1000
+    
+    // date = new Date(date.valueOf + milliSeconds )
+    
+    return date
+
+    let newDate = date.getDate() + offset
+    let maxDate = monthDays[date.getMonth()]
+
+    let validate = true
+    // Extreem conditions (transition when date exeeds limit or falls below 1 )
+    while(validate){
+        // Check if you need to go back to last month
+        if(newDate <= 0){
+            let prevMaxDate = monthDays[date.getMonth() - 1]
+
+            let prevMonth = date.getMonth() - 1 // 0 index based
+            
+            // Check for january -> go to prev year.
+            if(prevMonth <= -1){
+                prevMonth =  12 + prevMonth
+                let prevYear = ((date.getYear() - 100) - 1) + 2000
+                date.setYear(prevYear)
+            }
+
+            date.setMonth(prevMonth)
+            newDate = prevMaxDate - newDate
+            
+        }
+        // Check if you need to go to next month
+        else if(newDate > maxDate) {
+            let nextMonth = date.getMonth() + 1 // 0 index based
+            
+            // check for december -> go to next year.
+            if(nextMonth >= 12){
+                nextMonth =  nextMonth - 12 
+                let nextYear = ((date.getYear() - 100) + 1) + 2000
+                date.setYear(nextYear)
+            }     
+
+            date.setMonth(nextMonth)
+            newDate = maxDate - newDate
+        }else{
+            validate = false
+        }
+
+        console.log("---> ", newDate,date.getMonth() + 1, )
+    }
+    date.setDate(newDate)
+
+    return date
+}
+
+// console.log(offsetDate(selectedDate, -30))
 function timeDiff(t2, t1) {
-    // t2 --> end time, 
-    // t1 --> Start time
+    // t2 --> end time (24 hr format),  
+    // t1 --> Start time (24 hr format),  
     // Return --> t2 - t1 (in hours)
 
     const time1 = new Date()
@@ -26,16 +109,36 @@ function timeDiff(t2, t1) {
 }
 
 function to24Hrs(time){
-    let isPM = time.slice(-2) 
+    let AM_PM = time.slice(-2) 
     let [hours, minutes] = time.slice(0, -2).split(":")
-    if(isPM){
+    if(hours < 12 && AM_PM === "PM"){
         hours = Number(hours) + 12
-    }else if(hours === "12"){
+    }else if(hours === "12" && AM_PM === "AM"){
         hours = "00"
     }
     return `${hours}:${minutes}`
 }
 
+function to12Hrs(time){
+    if(!time) return ""
+
+    let [hours, minutes] = time.split(":")
+    hours = Number(hours)
+    minutes = Number(minutes)
+
+    if(hours < 12){
+        hours = hours === 0? "12" : hours
+        return `${hours}:${minutes}AM`
+    }
+    else if (hours === 12) {
+        return `${hours}:${minutes}PM`
+    } 
+    else {
+        return `${hours - 12}:${minutes}PM`
+    }
+}
+
+// Task CRUD functions
 
 function getTaskByHour({day, hour}){
     
@@ -47,7 +150,7 @@ function getTaskByHour({day, hour}){
 
 function getTaskByID(taskID) {
     console.log(taskID)
-    return tasks.filter(task => task.id === taskID)[0]
+    return tasks.filter (task => task.id === taskID)[0]
 }
 
 function updateOrCreateTask(taskID) {
@@ -65,9 +168,10 @@ function updateOrCreateTask(taskID) {
     // Calculated Fields.
     const duration = (endTime!=="" && startTime!=="")? timeDiff(endTime, startTime) : ""
     if (startTime) {
-        let startHour = Number(startTime.split(":")[0])
-        hour = (startHour < 12) ? `${startHour}:00AM` : `${(startHour - 12)}:00PM`
-        hour = (startHour === 0) ? "12:00AM": hour
+        let time = to12Hrs(startTime)
+        let startHour = time.split(":")[0]
+        let AM_PM = time.slice(-2)
+        hour = `${startHour}:00${AM_PM}`
     }
     
     const taskItem = {id, day, hour, completed, date, startTime, endTime, duration, title, description }
@@ -229,11 +333,12 @@ const drawTask = (task)=>{
     const taskElem = taskTemplate.cloneNode(true)
     const parentElem = document.querySelector(`[data-day="${task.day}"][data-hour="${task.hour}"]`)
     const height = Math.max(task["duration"] * 3.65, 1)
-
+    
     taskElem.id = task["id"]
     taskElem.textContent = task["title"]
     taskElem.addEventListener("click", handleHourLeftClick)
     taskElem.addEventListener("dragstart", handleTaskDragStart);
+    console.log(task)
     taskElem.style["height"] = height + "rem"
     parentElem.appendChild(taskElem)
 
@@ -244,12 +349,12 @@ function renderTasks(taskID){
     // Use the task template to generate an new task element.
     if(taskID){
         let task = getTaskByID(taskID)
-        console.log(task)
         document.getElementById(task.id)?.remove()
         drawTask(task)
     }else{
 
         tasks.map(task=>{
+            // Remove existing element
             document.getElementById(task.id)?.remove()
             drawTask(task)
         })
@@ -281,15 +386,6 @@ hours.forEach((hour) => {
 
 
 
-// const weekDays = [
-//     "Monday",
-//     "Tuesday",
-//     "Wednesday",
-//     "Thursday",
-//     "Friday",
-//     "Saturday",
-//     "Sunday",
-// ];
 // const dayHours = [
 //     "1:00AM",
 //     "2:00AM",
