@@ -1,0 +1,32 @@
+.days-template{
+    display: none;
+}
+.month-title{
+    text-transform: capitalize;
+}
+th{
+    width: 3rem;
+}
+
+
+.day{
+    margin: 0.5rem;
+    padding: 0.5rem;
+    /* min-width: 2rem; */
+    border: 1px solid teal;
+    background-color: teal;
+    color: white;
+    text-align: center;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
+}
+
+
+.day:hover{
+
+    background-color: white;
+    color: teal;
+    cursor: pointer;
+}
