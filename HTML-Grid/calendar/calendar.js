@@ -1,4 +1,4 @@
-const year = 2023
+const year = 2024
 const months = {
     january: 31,
     february: 28,
@@ -30,7 +30,6 @@ if (year % 4 === 0) {
 // ];
 // const baseDate = document.querySelector('input[name=base_date]')
 
-console.log(baseDate)
 Object.entries(months).map(([monthName, noMonthDays], monthIdx) => {
     // Create month element then insert into document.
 
@@ -84,9 +83,8 @@ function handleClickDay(event){
     document.querySelector("section[id=calendar]").style["display"] = "none"
     document.querySelector("section[id=tasks]").style["display"] = "block"
     changeBaseDate()
+    openTasks()
     
-    
-    console.log()
 }
 
 function genMonthWeeks(noDays, monthNum) {

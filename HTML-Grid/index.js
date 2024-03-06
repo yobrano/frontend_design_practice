@@ -79,7 +79,6 @@ function getWeekRange(startDate) {
     for (let dayOffset = 0; dayOffset <= 6; dayOffset++) {
         let wkDay = offsetDate(date, dayOffset - day);
         let index = weekDays[wkDay.getDay()];
-        console.log(date)
         weekDates[index] = wkDay;
     }
 
@@ -142,15 +141,14 @@ function to12Hrs(time) {
 }
 
 // Task CRUD functions
-function getTaskByHour({ day, hour }) {
+function getTaskByHour({ day, hour, date }) {
     const task = tasks.filter((task) => {
-        return task.hour === hour && task.day === day;
+        return task.hour === hour && task.day === day && task.date === date;
     })[0];
     return task;
 }
 
 function getTaskByID(taskID) {
-    console.log(taskID);
     return tasks.filter((task) => task.id === taskID)[0];
 }
 
@@ -229,6 +227,8 @@ const tasksSection = document.querySelector("section[id=tasks]")
 let weekRange = getWeekRange(selectedDate);
 
 // ------------ Form Control Methods ------------
+
+
 function hideTaskForm() {
     taskForm.querySelector("input[name=task_id]").value = "";
     taskForm.querySelector("input[name=task_hour]").value = "";
@@ -297,7 +297,6 @@ function changeBaseDate(){
         const index = element.dataset["day"]
         element.dataset['date'] = formatDate(weekRange[index])
     })
-    console.log()
 }
 function handleBaseDateChange(event){
     selectedDate = new Date(baseDate.value)
@@ -307,7 +306,6 @@ function handleBaseDateChange(event){
         const index = element.dataset["day"]
         element.dataset['date'] = formatDate(weekRange[index])
     })
-    console.log()
 }
 // -------- Submit Handlers
 function handleTaskSubmit(event) {
@@ -335,7 +333,7 @@ function handleToCalendar(event){
     event.preventDefault();
     calendarSection.style["display"] = "flex"
     tasksSection.style["display"] = "none"
-
+    closeTasks()
 }
 
 function handleDeleteTask(event) {
@@ -398,10 +396,11 @@ function handleHourDrop(event) {
 // ------------ Renderer and Aux fns ------------
 const drawTask = (task) => {
     const taskTemplate = document.querySelector("#task-template");
+    console.log(taskTemplate)
     const taskElem = taskTemplate.cloneNode(true);
 
     const parentElem = document.querySelector(
-        `[data-day="${task.day}"][data-hour="${task.hour}"]`
+        `[data-day="${task.day}"][data-hour="${task.hour}"][data-date="${task.date}"]`
     );
 
     taskElem.id = task["id"];
@@ -414,25 +413,12 @@ const drawTask = (task) => {
         taskElem.dataset["extension"] = true;
         height = Math.max(task["duration"] * cellHeight, 1);
     }
-
+    taskElem.dataset["role"] = "task"
     taskElem.style["height"] = height + "rem";
     parentElem.appendChild(taskElem);
 };
 
-function renderTasks(taskID) {
-    // Use the task template to generate an new task element.
-    if (taskID) {
-        let task = getTaskByID(taskID);
-        document.getElementById(task.id)?.remove();
-        drawTask(task);
-    } else {
-        tasks.map((task) => {
-            // Remove existing element
-            document.getElementById(task.id)?.remove();
-            drawTask(task);
-        });
-    }
-}
+
 
 function drawNextDay(task, startHour) {
     startHour = startHour ? startHour : "12:00AM";
@@ -452,11 +438,42 @@ function drawNextDay(task, startHour) {
         };
         document.getElementById(task.id).height =
             String(hoursToEOD * cellHeight) + "rem!important";
-        console.log(document.getElementById(task.id));
         drawTask(extendedTask);
     }
 }
 
+function renderTasks(taskID) {
+    // Use the task template to generate an new task element.
+    if (taskID) {
+        let task = getTaskByID(taskID);
+        document.getElementById(task.id)?.remove();
+        drawTask(task);
+    } else {
+        tasks.map((task) => {
+            // Remove existing element
+            document.getElementById(task.id)?.remove();
+            drawTask(task);
+        });
+    }
+}
+
+function unrenderTasks(taskID){
+    if(taskID){
+        document.querySelector(taskID).remove()
+    }else{
+        document.querySelectorAll("[data-role=task]").forEach(element=> element.remove())
+    }
+}
+
+function openTasks(){
+    hideTaskForm()
+    renderTasks()
+}
+
+function closeTasks(){
+    hideTaskForm()
+    unrenderTasks()
+}
 // ------------ Event Binders ------------
 toCalendarButton.addEventListener("click", handleToCalendar);
 taskForm.addEventListener("submit", handleTaskSubmit);
