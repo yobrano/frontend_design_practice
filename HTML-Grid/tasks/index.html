@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid</title>
+    <link rel="icon" type="image/png" href="favicon.ico"/>
+
+    <link rel="stylesheet" href="tasks.css">
+</head>
+<body>
+    <section id="heading">
+        
+        FEBRUARY
+        WK-1
+    </section>
+    
+    <section id="week" >
+        <form action="" class="rounded border" id="task-form">
+            <h3><center> Create Task</center></h3>
+            <input type="hidden" name="task_id">
+            <input type="hidden" name="task_hour">
+            <input type="hidden" name="task_day">
+
+            <label class="d-block p-1" for="task-date">
+                Date:
+                <input id="task-date" name="task_date" type="date" >
+            </label>
+            <label class="d-block p-1" for="task-start-time">
+                Start Time:
+                <input id="task-start-time" name="task_start_time" type="time" >
+            </label>
+            <label class="d-block p-1" for="task-start-time">
+                End Time:
+                <input id="task-end-time" name="task_end_time" type="time" >
+            </label>
+
+            <label for="task-title" class="d-block p-1">
+                Title:
+                <input id="task-title" name="task_title" type="text" placeholder="Task Name">
+            </label>
+
+            <label for="task-completed" class="d-block p-1" >
+                Completed:
+                
+                <input id="task-completed" name="task_completed" type="checkbox" >
+            </label>
+
+            <textarea name="task_description" id="task-description" cols="30" rows="10" class="d-block p-1" placeholder="Details" ></textarea>
+            <br>
+
+            <button type="submit">Create Task</button>
+            <button id="delete">delete</button>
+
+            <small><i>Press <strong>ESC</strong> to close </i></small>
+        </form>
+    </section>
+
+    <section>
+    <div id="day">
+        <div id="Time" class="col">
+            <div  class="row index"> Time / Day </div>
+            <div class="row index"> 12:00AM </div>
+            <div class="row index"> 1:00AM </div>
+            <div class="row index"> 2:00AM </div>
+            <div class="row index"> 3:00AM </div>
+            <div class="row index"> 4:00AM </div>
+            <div class="row index"> 5:00AM </div>
+            <div class="row index"> 6:00AM </div>
+            <div class="row index"> 7:00AM </div>
+            <div class="row index"> 8:00AM </div>
+            <div class="row index"> 9:00AM </div>
+            <div class="row index"> 10:00AM </div>
+            <div class="row index"> 11:00AM </div>
+            <div class="row index"> 12:00PM </div>
+            <div class="row index"> 1:00PM </div>
+            <div class="row index"> 2:00PM </div>
+            <div class="row index"> 3:00PM </div>
+            <div class="row index"> 4:00PM </div>
+            <div class="row index"> 5:00PM </div>
+            <div class="row index"> 6:00PM </div>
+            <div class="row index"> 7:00PM </div>
+            <div class="row index"> 8:00PM </div>
+            <div class="row index"> 9:00PM </div>
+            <div class="row index"> 10:00PM </div>
+            <div class="row index"> 11:00PM </div>
+        </div>
+        <div id="Time" class="col">
+            <div class="row index"> Monday </div>
+            <div id="Hour"  data-day="Monday" data-hour="12:00AM" class="row"></div>
+            <div id="Hour"  data-day="Monday" data-hour="1:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="2:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="3:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="4:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="5:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="6:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="7:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="8:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="9:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="10:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="11:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="12:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="1:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="2:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="3:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="4:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="5:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="6:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="7:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="8:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="9:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="10:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Monday" data-hour="11:00PM" class="row"> .</div>
+        </div>    
+        
+        <div id="Time" class="col">
+            <div  class="row index"> Tuesday </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="12:00AM" class="row"></div>
+            <div id="Hour"  data-day="Tuesday" data-hour="1:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="2:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="3:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="4:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="5:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="6:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="7:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="8:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="9:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="10:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="11:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="12:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="1:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="2:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="3:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="4:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="5:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="6:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="7:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="8:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="9:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="10:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Tuesday" data-hour="11:00PM" class="row"> .</div>
+        </div>
+                
+        <div id="Time" class="col">
+            <div  class="row index"> Wednesday </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="12:00AM" class="row"></div>
+            <div id="Hour"  data-day="Wednesday" data-hour="1:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="2:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="3:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="4:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="5:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="6:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="7:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="8:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="9:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="10:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="11:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="12:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="1:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="2:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="3:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="4:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="5:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="6:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="7:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="8:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="9:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="10:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Wednesday" data-hour="11:00PM" class="row"> .</div>
+        </div>
+
+                
+        <div id="Time" class="col">
+            <div  class="row index"> Thursday </div>
+            <div id="Hour"  data-day="Thursday" data-hour="12:00AM" class="row"></div>
+            <div id="Hour"  data-day="Thursday" data-hour="1:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="2:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="3:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="4:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="5:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="6:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="7:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="8:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="9:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="10:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="11:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="12:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="1:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="2:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="3:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="4:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="5:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="6:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="7:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="8:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="9:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="10:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Thursday" data-hour="11:00PM" class="row"> .</div>
+        </div>
+
+                
+        <div id="Time" class="col">
+            <div  class="row index"> Friday </div>
+            <div id="Hour"  data-day="Friday" data-hour="12:00AM" class="row"></div>
+            <div id="Hour"  data-day="Friday" data-hour="1:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="2:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="3:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="4:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="5:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="6:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="7:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="8:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="9:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="10:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="11:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="12:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="1:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="2:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="3:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="4:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="5:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="6:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="7:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="8:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="9:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="10:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Friday" data-hour="11:00PM" class="row"> .</div>
+        </div>
+
+                
+        <div id="Time" class="col">
+            <div  class="row index"> Satruday </div>
+            <div id="Hour"  data-day="Satruday" data-hour="12:00AM" class="row"></div>
+            <div id="Hour"  data-day="Satruday" data-hour="1:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="2:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="3:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="4:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="5:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="6:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="7:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="8:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="9:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="10:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="11:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="12:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="1:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="2:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="3:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="4:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="5:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="6:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="7:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="8:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="9:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="10:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Satruday" data-hour="11:00PM" class="row"> .</div>
+        </div>
+
+                
+        <div id="Time" class="col">
+            <div  class="row index"> Sunday </div>
+            <div id="Hour"  data-day="Sunday" data-hour="12:00AM" class="row"></div>
+            <div id="Hour"  data-day="Sunday" data-hour="1:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="2:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="3:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="4:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="5:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="6:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="7:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="8:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="9:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="10:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="11:00AM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="12:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="1:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="2:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="3:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="4:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="5:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="6:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="7:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="8:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="9:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="10:00PM" class="row"> </div>
+            <div id="Hour"  data-day="Sunday" data-hour="11:00PM" class="row"> .</div>
+        </div>
+    </div>
+    
+
+    </section>
+
+
+    <div class="task" draggable="true" id="task-template">
+        <!-- Task Template -->
+    </div>
+    <script src="tasks.js"></script>
+
+</body>
+</html>

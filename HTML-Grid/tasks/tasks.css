@@ -36,16 +36,14 @@ section{
 }
 
 .index {
+    z-index: 3;
     font-weight: bold;
     font-size: medium;
     background-color: var(--secondary);
     color: var(--dark);
+    position: sticky;
     top: 0;
 }
-.label{
-    position: sticky;
-}
-
 
 #day{
     display: ruby;
@@ -68,7 +66,6 @@ section{
 
 #week{
     overflow-y: scroll;
-
 }
 
 .selected-hour{
@@ -97,9 +94,5 @@ section{
 }
 
 #task-template{
-    display: none;
-}
-
-#tasks{
     display: none;
 }

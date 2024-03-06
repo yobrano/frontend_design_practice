@@ -1,4 +1,4 @@
-const year = 2024;
+const year = 2023
 const months = {
     january: 31,
     february: 28,
@@ -18,16 +18,19 @@ if (year % 4 === 0) {
     months.february = 29;
 }
 
-const weekDays = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-];
+// THIS IS ALREADY DECLARED IN INDEX.JS  --> UNCOMMENT ONLY WHEN WORKING WITH CALENDAR/INDEX.HTML
+// const weekDays = [
+//     "Sunday",
+//     "Monday",
+//     "Tuesday",
+//     "Wednesday",
+//     "Thursday",
+//     "Friday",
+//     "Saturday",
+// ];
+// const baseDate = document.querySelector('input[name=base_date]')
 
+console.log(baseDate)
 Object.entries(months).map(([monthName, noMonthDays], monthIdx) => {
     // Create month element then insert into document.
 
@@ -38,7 +41,7 @@ Object.entries(months).map(([monthName, noMonthDays], monthIdx) => {
 });
 
 function genMonth(monthName, noMonthDays, monthIndex) {
-    // use the month template to generate a month element.
+    // use the month template to generate a month elements.
 
     const monthElement = document
         .getElementById("month-template")
@@ -73,6 +76,19 @@ function formatDate(date) {
     return `${year}-${month}-${monthDay}`;
 }
 
+
+function handleClickDay(event){
+    event.preventDefault()
+    baseDate.value = event.target.dataset["date"];
+
+    document.querySelector("section[id=calendar]").style["display"] = "none"
+    document.querySelector("section[id=tasks]").style["display"] = "block"
+    changeBaseDate()
+    
+    
+    console.log()
+}
+
 function genMonthWeeks(noDays, monthNum) {
     // Arrange the week days in a tabular format.
 
@@ -90,6 +106,7 @@ function genMonthWeeks(noDays, monthNum) {
     for (day = 1; day <= noDays; day++) {
         const date = new Date(`${year}-${monthNum}-${day}`);
         const dayElement = document.createElement("td");
+        dayElement.addEventListener("click", handleClickDay)
         dayElement.dataset["date"] = formatDate(date);
         dayElement.id = day;
         dayElement.classList.add("day");
