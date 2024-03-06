@@ -1,8 +1,12 @@
-.days-template{
+#month-template{
     display: none;
 }
 .month-title{
     text-transform: capitalize;
+    text-align: center;
+    font-size: 1.4rem;
+    color: teal;
+    cursor: default;
 }
 th{
     width: 3rem;
@@ -29,4 +33,14 @@ th{
     background-color: white;
     color: teal;
     cursor: pointer;
+}
+
+section{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.month{
+    padding: 1rem;
+    display: block;
 }
