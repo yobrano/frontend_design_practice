@@ -2,8 +2,8 @@
 Order in html
     * DateMethods.js
     * TaskFormControl.js
-    * TaskRender.js
     * Tasks.js
+    * TaskRender.js
     * index.js
     * calendar/calendar.js
 */ 

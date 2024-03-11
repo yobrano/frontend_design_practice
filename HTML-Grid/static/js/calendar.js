@@ -1,7 +1,7 @@
 const year = 2024
 const months = {
     january: 31,
-    february: 28,
+    february:  (year % 4 === 0)?29:28,
     march: 31,
     april: 30,
     may: 31,
@@ -13,22 +13,6 @@ const months = {
     november: 30,
     december: 31,
 };
-
-if (year % 4 === 0) {
-    months.february = 29;
-}
-
-// THIS IS ALREADY DECLARED IN INDEX.JS  --> UNCOMMENT ONLY WHEN WORKING WITH CALENDAR/INDEX.HTML
-// const weekDays = [
-//     "Sunday",
-//     "Monday",
-//     "Tuesday",
-//     "Wednesday",
-//     "Thursday",
-//     "Friday",
-//     "Saturday",
-// ];
-// const baseDate = document.querySelector('input[name=base_date]')
 
 Object.entries(months).map(([monthName, noMonthDays], monthIdx) => {
     // Create month element then insert into document.
@@ -63,17 +47,6 @@ function genMonth(monthName, noMonthDays, monthIndex) {
     return monthElement;
 }
 
-function formatDate(date) {
-    date = new Date(date);
-    // return Intl.DateTimeFormat("en-GB").format(date)
-    let monthDay = String(date.getDate());
-    let month = String(date.getMonth() + 1);
-    let year = String(date.getYear() - 100 + 2000);
-
-    monthDay = monthDay.length === 1 ? `0${monthDay}` : monthDay;
-    month = month.length === 1 ? `0${month}` : month;
-    return `${year}-${month}-${monthDay}`;
-}
 
 
 function handleClickDay(event){
@@ -105,7 +78,7 @@ function genMonthWeeks(noDays, monthNum) {
         const date = new Date(`${year}-${monthNum}-${day}`);
         const dayElement = document.createElement("td");
         dayElement.addEventListener("click", handleClickDay)
-        dayElement.dataset["date"] = formatDate(date);
+        dayElement.dataset["date"] = DateMethods.formatDate(date);
         dayElement.id = day;
         dayElement.classList.add("day");
         dayElement.innerText = day;

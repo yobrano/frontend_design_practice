@@ -16,25 +16,28 @@ th{
 .day{
     margin: 0.5rem;
     padding: 0.5rem;
-    /* min-width: 2rem; */
-    border: 1px solid teal;
-    background-color: teal;
-    color: white;
+    color: teal;
     text-align: center;
+    font-weight: bold;
+    font-size: large;
 
 }
 
 
 .day:hover{
-
-    background-color: white;
-    color: teal;
+    background-color: teal;
+    color: white;
     cursor: pointer;
+    border-radius: 8px;
 }
 
 section#calendar{
     display: flex;
     flex-wrap: wrap;
+    /* background-image: url(../../assets/images/bg-flora.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; */
 }
 
 .month{
