@@ -39,6 +39,7 @@ section{
     color: var(--white);
     height: 3rem;
 }
+
 .d-block{
     display:block !important;
 }
@@ -50,65 +51,15 @@ section{
     color: var(--dark);
     top: 0;
 }
+
 .label{
-    position: sticky;
-    z-index: 2;
+    /* position: sticky; */
+    z-index: 1;
 }
 
 
-#day{
-    display: ruby;
-}
 
 .p-1{
     padding: 0.5rem;
 }
 
-#task-form{
-    display: none;
-    padding: 1rem;
-    background: var(--white);
-    z-index: 2;
-    box-shadow: 5px  5px var(--dark);
-    border: 2px dotted var(--dark);
-    border-radius: 5%;
-    margin: 0.75rem 2rem;
-}
-
-#week{
-    overflow-y: scroll;
-
-}
-
-.selected-hour{
-    background-color: var(--dark);
-    color: var(--primary);
-}
-
-.task{
-    width: 5rem;
-    background: var(--secondary);
-    position: relative;
-    left: 2rem;
-    min-height: 3rem;
-
-    font-weight: bold;
-    color: var(--dark);
-}
-
-
-.task:hover{
-    background-color: var(--selected);
-    border: 2px solid var(--selected-outline);
-    border-radius: 5px;
-    cursor: pointer;
-    color: var(--white);
-}
-
-#task-template{
-    display: none;
-}
-
-#tasks{
-    display: none;
-}

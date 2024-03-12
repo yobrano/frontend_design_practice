@@ -1,17 +1,3 @@
-/*
-Order in html
-    * DateMethods.js
-    * TaskFormControl.js
-    * Tasks.js
-    * TaskRender.js
-    * index.js
-    * calendar/calendar.js
-*/ 
-
-
-
-
-let taskFormIsOpen = false;
 
 // ----------- Elements Selection -----------
 const taskForm = document.querySelector("#task-form");

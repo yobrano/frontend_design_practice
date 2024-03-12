@@ -8,10 +8,13 @@
 
     <link rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" href="static/css/calendar.css">
+    <link rel="stylesheet" href="static/css/tasks.css">
 </head>
 <body>
     <input type="number" name="base_year" id="base-year" value="2024">
-    <section id="calendar">
+    
+
+    <section id="year-view">
         <div id="month-template">
             <div class="month-title">
                 March
@@ -37,53 +40,18 @@
             
         </div>
     </section>
-    <section id="tasks">
+    <section id="month-view" style="display:none;">
+    </section>
+    
+    <section id="week-view">
         <div>
-        <button id="to-calendar">Calendar</button>
-
+            <button id="to-month">Month</button>
+            <button id="to-year">Year</button>
             <label for="base-date">
                 <input type="hidden" name="base_date" id="base-date">
             </label>
         </div>
 
-        <form action="" class="rounded border" id="task-form">
-            <h3><center> Create Task</center></h3>
-            <input type="hidden" name="task_id">
-            <input type="hidden" name="task_hour">
-            <input type="hidden" name="task_day">
-
-            <label class="d-block p-1" for="task-date">
-                Date:
-                <input id="task-date" name="task_date" type="date" >
-            </label>
-            <label class="d-block p-1" for="task-start-time">
-                Start Time:
-                <input id="task-start-time" name="task_start_time" type="time" >
-            </label>
-            <label class="d-block p-1" for="task-start-time">
-                End Time:
-                <input id="task-end-time" name="task_end_time" type="time" >
-            </label>
-
-            <label for="task-title" class="d-block p-1">
-                Title:
-                <input id="task-title" name="task_title" type="text" placeholder="Task Name">
-            </label>
-
-            <label for="task-completed" class="d-block p-1" >
-                Completed:
-                
-                <input id="task-completed" name="task_completed" type="checkbox" >
-            </label>
-
-            <textarea name="task_description" id="task-description" cols="30" rows="10" class="d-block p-1" placeholder="Details" ></textarea>
-            <br>
-
-            <button type="submit">Create Task</button>
-            <button id="delete">delete</button>
-
-            <small><i>Press <strong>ESC</strong> to close </i></small>
-        </form>
 
         <div id="day">
             <div  class="col" id="hours-labels">
@@ -126,16 +94,60 @@
 
         
             <div class="task" draggable="true" id="task-template" data-role="template">
-                <!-- Task Template -->
             </div>
-    </section>
+    </section> 
+
+    <form action="" class="rounded border" id="task-form">
+        <h3><center> Create Task</center></h3>
+        <input type="hidden" name="task_id">
+        <input type="hidden" name="task_hour">
+        <input type="hidden" name="task_day">
+
+        <label class="d-block p-1" for="task-date">
+            Date:
+            <input id="task-date" name="task_date" type="date" >
+        </label>
+        <label class="d-block p-1" for="task-start-time">
+            Start Time:
+            <input id="task-start-time" name="task_start_time" type="time" >
+        </label>
+        <label class="d-block p-1" for="task-start-time">
+            End Time:
+            <input id="task-end-time" name="task_end_time" type="time" >
+        </label>
+
+        <label for="task-title" class="d-block p-1">
+            Title:
+            <input id="task-title" name="task_title" type="text" placeholder="Task Name">
+        </label>
+
+        <label for="task-completed" class="d-block p-1" >
+            Completed:
+            
+            <input id="task-completed" name="task_completed" type="checkbox" >
+        </label>
+
+        <textarea name="task_description" id="task-description" cols="30" rows="10" class="d-block p-1" placeholder="Details" ></textarea>
+        <br>
+
+        <button type="submit">Create Task</button>
+        <button id="delete">delete</button>
+
+        <small><i>Press <strong>ESC</strong> to close </i></small>
+    </form>
+
 
     <script src="static/js/DateMethods.js"></script>
     <script src="static/js/TaskFormControl.js"></script>
+    <script src="static/js/TaskFormUI.js"></script>
     <script src="static/js/Tasks.js"></script>
+    <script src="static/js/TaskUI.js"></script>
     <script src="static/js/TaskRender.js"></script>
+    <!-- <script src="static/js/TasksUI.js"></script> -->
+    <script src="static/js/MonthUI.js"></script>
+    <script src="static/js/WeekUI.js"></script>
+    <script src="static/js/YearUI.js"></script>
     <script src="static/js/index.js"></script>
-    <script src="static/js/calendar.js"></script>
 
 </body>
 </html>

@@ -51,6 +51,12 @@ class DateMethods{
         return DateMethods.weekDays[temp.getDay()];
     }
 
+    static getMonthName(date){
+        date = new Date(date)
+        const monthNames = Object.keys(YearUI.months)
+        return monthNames[date.getMonth()]
+    }
+
     static hourStart(time){
         time = DateMethods.to12Hrs(time);
         let startHour = time.split(":")[0];

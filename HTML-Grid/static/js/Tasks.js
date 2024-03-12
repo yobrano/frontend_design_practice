@@ -1,13 +1,3 @@
-/*
-Order in html
-    * DateMethods.js
-    * TaskFormControl.js
-    * Tasks.js
-    * TaskRender.js
-    * index.js
-    * calendar/calendar.js
-*/ 
-
 const tasks = [];
 
 
@@ -23,8 +13,22 @@ function getTaskByID(taskID) {
     return tasks.filter((task) => task.id === taskID)[0];
 }
 
-function updateOrCreateTask(taskID) {
-    const taskItem = readTaskForm()
+
+
+function updateTask(taskID, taskItem){
+    const taskIndex = tasks.indexOf(getTaskByID(taskID));
+    tasks[taskIndex] = taskItem;
+    return taskItem
+}
+
+function createTask(taskItem){
+    taskItem.id = crypto.randomUUID();
+    tasks.push(taskItem);
+    return taskItem
+}
+
+
+function updateOrCreateTask(taskID, taskItem) {
 
     // Create if id is null or ""
     if (taskItem.id) {

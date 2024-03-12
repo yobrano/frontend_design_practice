@@ -1,14 +1,3 @@
-/*
-Order in html
-    * DateMethods.js
-    * TaskFormControl.js
-    * Tasks.js
-    * TaskRender.js
-    * index.js
-    * calendar/calendar.js
-*/ 
-
-
 function drawTask(task){
     const taskTemplate = document.querySelector("#task-template");
     const taskElem = taskTemplate.cloneNode(true);

@@ -1,6 +1,7 @@
 #month-template{
     display: none;
 }
+
 .month-title{
     text-transform: capitalize;
     text-align: center;
@@ -8,6 +9,31 @@
     color: teal;
     cursor: default;
 }
+
+
+#month-view{
+    display: none;
+}
+.month-lg td{
+    padding: 2rem !important;
+    margin: 5rem !important;
+    font-size: larger !important;
+}
+
+
+.month-lg .month-title{
+    font-size: 2rem;
+}
+
+
+.month-task{
+    padding: 1rem;
+    border-bottom: 4px solid teal;
+    flex-grow: 1;
+    list-style: none;
+
+}
+
 th{
     width: 3rem;
 }
@@ -31,16 +57,19 @@ th{
     border-radius: 8px;
 }
 
-section#calendar{
+section#year-view{
     display: flex;
     flex-wrap: wrap;
-    /* background-image: url(../../assets/images/bg-flora.jpg);
+    background-image: url(../../assets/images/bg-flora.jpg);
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; */
+    background-attachment: fixed;
 }
 
 .month{
-    padding: 1rem;
-    display: block;
+    padding: 1.1rem;
+}
+
+#week-view{
+    display: none;
 }
