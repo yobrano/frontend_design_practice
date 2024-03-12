@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="static/css/tasks.css">
 </head>
 <body>
-    <input type="number" name="base_year" id="base-year" value="2024">
+    <input type="number" name="base_year" id="base-year" value="2024" placeholder="2024">
     
 
     <section id="year-view">
@@ -47,9 +47,8 @@
         <div>
             <button id="to-month">Month</button>
             <button id="to-year">Year</button>
-            <label for="base-date">
-                <input type="hidden" name="base_date" id="base-date">
-            </label>
+            <input type="hidden" name="base_date" id="base-date">
+            
         </div>
 
 
@@ -131,18 +130,16 @@
         <br>
 
         <button type="submit">Create Task</button>
-        <button id="delete">delete</button>
+        <button id="delete-task">delete</button>
 
         <small><i>Press <strong>ESC</strong> to close </i></small>
     </form>
 
 
     <script src="static/js/DateMethods.js"></script>
-    <script src="static/js/TaskFormControl.js"></script>
     <script src="static/js/TaskFormUI.js"></script>
     <script src="static/js/Tasks.js"></script>
     <script src="static/js/TaskUI.js"></script>
-    <script src="static/js/TaskRender.js"></script>
     <!-- <script src="static/js/TasksUI.js"></script> -->
     <script src="static/js/MonthUI.js"></script>
     <script src="static/js/WeekUI.js"></script>

@@ -54,19 +54,24 @@ class WeekUI {
         })
 
 
-        drawNextDay(taskItem);
+        TaskUI.drawNextDay(taskItem);
         dropzone.appendChild(draggableElement);
         event.dataTransfer.clearData();
     }
 
     static handleToYearClick(event){
+        document.querySelector(".selected-hour")?.classList.remove("selected-hour");
+        const taskform = new TaskFormUI()
+        taskform.unmount()
+        
         YearUI.show()
     }
 
     static handleToMonthClick(event){
         // Close the task form and open the month ui.
         document.querySelector(".selected-hour")?.classList.remove("selected-hour");
-        hideTaskForm();
+        const taskform = new TaskFormUI()
+        taskform.unmount()
 
         const month= new MonthUI(event.target.value)
         month.render()

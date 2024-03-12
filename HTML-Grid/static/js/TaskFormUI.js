@@ -16,9 +16,14 @@ class TaskFormUI{
         this.taskEndTimeField = this.rootElement.querySelector("input[name=task_end_time]")
         this.taskTitleField = this.rootElement.querySelector("input[name=task_title]")
         this.taskDescriptionField = this.rootElement.querySelector("textarea[name=task_description]")
-    
-        this.rootElement.addEventListener("submit", TaskFormUI.handleSubmit)
+
+        this.submitButton = this.rootElement.querySelector(`input[type=submit]`)
+        this.deleteButton = this.rootElement.querySelector(`[id="delete-task"]`)
+        
+        // Event Binding
         this.rootElement.addEventListener("keydown", TaskFormUI.handleEscape)
+        this.deleteButton.addEventListener("click", TaskFormUI.handleDelete)
+        document.addEventListener("submit", TaskFormUI.handleSubmit)
     }
 
     static handleSubmit(event){
@@ -31,14 +36,15 @@ class TaskFormUI{
 
         const taskItemUI = new TaskUI(taskItem)
         taskItemUI.render()
+    }
 
-
-        // const id = TaskFormUI.rootElement.querySelector("input[name=task_id]").value;
-        // //create if task is empty
-        // task ? updateOrCreateTask(task.id) : updateOrCreateTask();
-        // renderTasks(task?.id);
-        // hideTaskForm();
-        // document.querySelector(".selected-hour")?.classList.remove("selected-hour");
+    static handleDelete(event){
+        event.preventDefault()
+        const taskForm = new TaskFormUI()
+        const taskItem = taskForm.collectTaskItem()
+        TaskUI.unmount(taskItem.id)
+        deleteTask(taskItem.id)
+        taskForm.unmount()
     }
 
     static handleEscape(event){
@@ -119,7 +125,6 @@ class TaskFormUI{
 
 
     populateTaskFom(task){
-        console.log(task)
         if (!task.id) {
             // New task item --> populate fields from clicked hour cell.
             this.taskDayField.value = task["day"];

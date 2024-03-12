@@ -4,19 +4,15 @@ class TaskUI {
         this.rootElement = task.id && document.getElementById(task.id)
     }
 
-   
 
     static handleTaskDragStart(event) {
         const taskForm = new TaskFormUI()
         taskForm.unmount()
-        
         event.dataTransfer.setData("text/plain", event.target.id);
         const task = getTaskByID(event.target.id);
         
         document.querySelector(`[id="${task.id}"][data-extension=true]`)?.remove();
     }
-
-
     
     
     static drawNextDay(task, startHour) {
@@ -41,33 +37,16 @@ class TaskUI {
         }
     }
     
-    static renderTasks(taskID) {
-        // Use the task template to generate an new task element.
-        if (taskID) {
-            let task = getTaskByID(taskID);
-            document.getElementById(task.id)?.remove();
-            drawTask(task);
-        } else {
-            tasks.map((task) => {
-                // Remove existing element
-                document.getElementById(task.id)?.remove();
-                drawTask(task);
-            });
-        }
-    }
-    
+
     static unmount(taskID) {
         if (taskID) {
-
-            document.querySelector(taskID).remove()
+            document.getElementById(taskID).remove()
             
         } else {
             document.querySelectorAll("[data-role=task]").forEach(element => element.remove())
         }
     }
     
-
-
 
     render() {
         // Copy attributes onto task template then append to hour cell.
@@ -82,7 +61,6 @@ class TaskUI {
 
         taskElem.id = this.task["id"];
         taskElem.textContent = this.task["title"];
-        taskElem.addEventListener("click", handleHourLeftClick);
         taskElem.addEventListener("dragstart", TaskUI.handleTaskDragStart);
     
         let height = Math.max(this.task["duration"] * cellHeight, 1);
@@ -94,7 +72,7 @@ class TaskUI {
         taskElem.style["height"] = height + "rem";
         parentElem.appendChild(taskElem);
 
-
         this.rootElement = taskElem;
     }
+
 }

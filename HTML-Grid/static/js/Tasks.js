@@ -1,4 +1,3 @@
-const tasks = [];
 
 
 // Task CRUD functions
