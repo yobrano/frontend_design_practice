@@ -1,28 +1,16 @@
 class YearUI{
-    constructor(){
-        this.render()
-    }
+  
     year = Number(YearUI.baseYearInput.value);
 
     static rootElement = document.querySelector("section[id=year-view]");
     static baseYearInput = document.querySelector("input[name=base_year]")
   
-    static months = {
-        january: 31,
-        february: 28 + (Number(YearUI.baseYearInput.value).year % 4 === 0),
-        march: 31,
-        april: 30,
-        may: 31,
-        june: 30,
-        july: 31,
-        august: 31,
-        september: 30,
-        october: 31,
-        november: 30,
-        december: 31,
-    };
 
-
+    constructor(){
+        const baseYear = Number(YearUI.baseYearInput.value)
+        DateMethods.months["february"] = 28 + (baseYear%4 === 0)
+        this.render()
+    }
 
     static handleClickDay(event){
         event.preventDefault()
@@ -31,9 +19,8 @@ class YearUI{
         YearUI.rootElement.style["display"] = "none"
         MonthUI.rootElement.style["display"] = "none"
         const week = new WeekUI()
+        week.render()
         week.show()
-      
-        
     }
 
     static handleMonthTitleClick(event){
@@ -76,10 +63,6 @@ class YearUI{
 
         return monthElement;
     }
-
-
-
-
 
     genMonthWeeks(noDays, monthNum, year) {
         // Arrange the week days in a tabular format.
@@ -134,8 +117,6 @@ class YearUI{
         return weeks; // A list of days organized into weeks.
     }
 
-
-
     render(){
         // Clear out the old months - for when the year value changes.
         YearUI.rootElement.querySelectorAll(".month").forEach((month)=>{
@@ -144,7 +125,7 @@ class YearUI{
         
         // Create month element then insert into document.
         this.year = Number(YearUI.baseYearInput.value);
-        Object.entries(YearUI.months).map(([monthName, noMonthDays], monthIdx) => {
+        Object.entries(DateMethods.months).map(([monthName, noMonthDays], monthIdx) => {
             const monthElement = this.genMonth(monthName, noMonthDays, monthIdx + 1, this.year);
             monthElement.id = monthName
             monthElement.classList.add("month")

@@ -37,6 +37,7 @@ class TaskUI {
         }
     }
     
+    
 
     static unmount(taskID) {
         if (taskID) {
@@ -47,7 +48,6 @@ class TaskUI {
         }
     }
     
-
     render() {
         // Copy attributes onto task template then append to hour cell.
         document.getElementById(this.task.id)?.remove()
@@ -74,5 +74,6 @@ class TaskUI {
 
         this.rootElement = taskElem;
     }
+
 
 }

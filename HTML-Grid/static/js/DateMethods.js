@@ -46,6 +46,21 @@ class DateMethods{
         "12:00AM",
     ];
 
+    static months = {
+        january: 31,
+        february: 28,
+        march: 31,
+        april: 30,
+        may: 31,
+        june: 30,
+        july: 31,
+        august: 31,
+        september: 30,
+        october: 31,
+        november: 30,
+        december: 31,
+    };
+    
     static getWeekDay(date){
         let temp = new Date(date);
         return DateMethods.weekDays[temp.getDay()];
@@ -53,7 +68,7 @@ class DateMethods{
 
     static getMonthName(date){
         date = new Date(date)
-        const monthNames = Object.keys(YearUI.months)
+        const monthNames = Object.keys(DateMethods.months)
         return monthNames[date.getMonth()]
     }
 

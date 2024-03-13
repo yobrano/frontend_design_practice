@@ -1,13 +1,12 @@
 class WeekUI {
     static rootElement = document.querySelector("section[id=week-view]");
+    static baseDateInput = document.querySelector("[name=base_date]");
 
     constructor() {
         this.toMonthBtn = WeekUI.rootElement.querySelector("[id=to-month]")
         this.toYearBtn = WeekUI.rootElement.querySelector("[id=to-year]")
         this.hourLabelsElement = WeekUI.rootElement.querySelector("#hours-labels");
-        this.render();
         this.taskForm = new TaskFormUI()
-
     }
 
     static handleHourClick(event) {   
@@ -61,22 +60,27 @@ class WeekUI {
 
     static handleToYearClick(event){
         document.querySelector(".selected-hour")?.classList.remove("selected-hour");
-        const taskform = new TaskFormUI()
-        taskform.unmount()
-        
+        new WeekUI().unmount()
+        new TaskFormUI().unmount()
         YearUI.show()
     }
+
+
 
     static handleToMonthClick(event){
         // Close the task form and open the month ui.
         document.querySelector(".selected-hour")?.classList.remove("selected-hour");
         const taskform = new TaskFormUI()
         taskform.unmount()
-
+        WeekUI.unmount()
+        
         const month= new MonthUI(event.target.value)
         month.render()
         month.show()
     }
+
+
+
 
     static show(){
         YearUI.rootElement.style["display"] = "none"
@@ -84,7 +88,29 @@ class WeekUI {
         WeekUI.rootElement.style["display"] = "block"
     }
 
+    static unmount(){
+        // Remove the cells and hide the whole week ui.
+        WeekUI.rootElement.querySelectorAll("[data-role=hour-label]")
+        .forEach(element => {
+            element.remove()
+        });
+        
+        WeekUI.rootElement.querySelectorAll("[data-role=hour-cell]")
+        .forEach(element => {
+            element.remove()
+        });
+
+        WeekUI.rootElement.style["display"] = "none"
+    }
+
     render() {
+        
+
+        // Remove any previous render results.
+        this.unmount()
+        this.selectedDate = new Date(WeekUI.baseDateInput.value);
+        this.weekRange = DateMethods.getWeekRange(this.selectedDate);
+
         // Create the week UI --> the hour-label and hour cells. 
         DateMethods.dayHours.map((hour) => {
             // Add the hour text on first column
@@ -104,7 +130,8 @@ class WeekUI {
                 hourElement.dataset["hour"] = hour;
                 hourElement.dataset["day"] = weekDay;
                 hourElement.dataset["role"] = "hour-cell";
-                hourElement.dataset["date"] = DateMethods.formatDate(weekRange[weekDay]);
+
+                hourElement.dataset["date"] = DateMethods.formatDate(this.weekRange[weekDay]);
                 
                 hourElement.classList.add("row");
 
@@ -119,6 +146,14 @@ class WeekUI {
                 dayElement.appendChild(hourElement);
             });
         });
+        // Display Cells and tasks
+        this.show()
+        
+        const weekDates = Object.values(this.weekRange)
+        weekDates.forEach(date=>{
+            date = DateMethods.formatDate(date)
+            tasks.forEach(task=>(task.date === date) && new TaskUI(task).render())
+        })
 
         // Bind event listeners to navigation buttons
         this.toMonthBtn.addEventListener("click", WeekUI.handleToMonthClick)
@@ -129,11 +164,12 @@ class WeekUI {
 
     }
 
+
     show() {
         WeekUI.show()
     }
 
-    hide() {
-        WeekUI.rootElement.style["display"] = "none";
+    unmount() {
+        WeekUI.unmount()
     }
 }

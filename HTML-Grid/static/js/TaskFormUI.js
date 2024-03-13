@@ -30,7 +30,6 @@ class TaskFormUI{
         event.preventDefault()
         const taskForm = new TaskFormUI()
         let taskItem = taskForm.collectTaskItem()
-        console.log(taskItem)
         taskItem = taskItem.id? updateTask(taskItem.id, taskItem): createTask(taskItem)
         taskForm.unmount()
 
@@ -42,8 +41,9 @@ class TaskFormUI{
         event.preventDefault()
         const taskForm = new TaskFormUI()
         const taskItem = taskForm.collectTaskItem()
-        TaskUI.unmount(taskItem.id)
         deleteTask(taskItem.id)
+        TaskUI.unmount(taskItem.id)
+        
         taskForm.unmount()
     }
 

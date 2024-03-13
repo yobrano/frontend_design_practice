@@ -7,6 +7,14 @@ class MonthUI{
         this.show()
     } 
 
+    static unmount(){
+        MonthUI.rootElement.childNodes.forEach(element=>{
+            element.remove()
+        })
+        MonthUI.rootElement.style["display"] ="none"
+
+        
+    }
 
     static show(){
         YearUI.rootElement.style["display"] = "none"
@@ -14,28 +22,25 @@ class MonthUI{
         WeekUI.rootElement.style["display"] = "none"
     }
 
-    
     render(){
         // Remove previous elements.
-        MonthUI.rootElement.childNodes.forEach(element=>{
-            element.remove()
-        })
+        this.unmount()
 
         // Add a listener to the day components.
         this.monthElement.classList.replace("month", "month-lg")
         this.monthElement.querySelectorAll(".day").forEach(element => {
             element.addEventListener("click", (event)=> YearUI.handleClickDay(event))
-        });
-
+        });        
         MonthUI.rootElement.appendChild(this.monthElement)
-
+        
+        this.show()
     }
     
     show(){
         MonthUI.show()
     }
     
-    hide(){
-        MonthUI.rootElement.style["display"] ="none"
+    unmount(){
+        MonthUI.unmount()
     }
 }
