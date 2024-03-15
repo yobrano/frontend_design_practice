@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="./calendar-gc.css" />
+</head>
+
+<body>
+    
+    <div id="modal" class="event-container">
+        <div class="event-display" id="event-display">
+            <button onclick="closeModal()" > X </button> 
+            <br>
+            <input id="event-title" type="text" placeholder="Event Title" class="event-title" >
+            <div class="event-date" >Date: <input type="date" name="event_date" id="event-date"></div>
+            <div class="event-state" >
+                State?
+                <select name="event_state" id="event-state">
+                    <option value="pending">Pending</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="done">Done</option>
+                </select>
+            </div>
+            Color: <input type="color" name="event_color" id="event-color" value="#ffffff">
+            <input type="hidden" name="event_id" id="event-id" value="">
+
+
+        </div>
+    </div>
+
+    <div id="calendar"></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./calendar-gc.js"></script>
+    <script src="./DateMethods.js"></script>
+    <script src="./events.js"></script>
+
+    <script>
+        
+
+        
+
+
+
+    </script>
+</body>
+
+</html>
